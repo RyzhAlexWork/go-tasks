@@ -1,3 +1,3 @@
-# День 1 - TwoSum
+День 1 - TwoSum
 
-# День 2 - IsomorphicStrings
+День 2 - IsomorphicStrings
