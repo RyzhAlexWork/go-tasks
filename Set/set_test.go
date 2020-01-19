@@ -3,7 +3,7 @@ package set
 import "testing"
 
 func TestCreate(t *testing.T) {
-	got := Create()
+	got := ftCreate()
 
 	if got.values == nil {
 		t.Errorf("Множество не было создано")
@@ -11,8 +11,8 @@ func TestCreate(t *testing.T) {
 }
 
 func TestAdd_1(t *testing.T) {
-	s := Create()
-	got := Add(s, 5)
+	s := ftCreate()
+	got := ftAdd(s, 5)
 
 	if got == false {
 		t.Errorf("Элемент не был добавлен")
@@ -20,9 +20,9 @@ func TestAdd_1(t *testing.T) {
 }
 
 func TestAdd_2(t *testing.T) {
-	s := Create()
-	Add(s, 5)
-	got := Add(s, 5)
+	s := ftCreate()
+	ftAdd(s, 5)
+	got := ftAdd(s, 5)
 
 	if got == true {
 		t.Errorf("Элемент был добавлен, но он уже содержался в данном множестве")
@@ -30,9 +30,9 @@ func TestAdd_2(t *testing.T) {
 }
 
 func TestHas_1(t *testing.T) {
-	s := Create()
-	Add(s, 5)
-	got := Has(s, 5)
+	s := ftCreate()
+	ftAdd(s, 5)
+	got := ftHas(s, 5)
 
 	if got == false {
 		t.Errorf("Элемент не был найден, но он содержится в данном множестве")
@@ -40,9 +40,9 @@ func TestHas_1(t *testing.T) {
 }
 
 func TestHas_2(t *testing.T) {
-	s := Create()
-	Add(s, 5)
-	got := Has(s, 7)
+	s := ftCreate()
+	ftAdd(s, 5)
+	got := ftHas(s, 7)
 
 	if got == true {
 		t.Errorf("Элемент был найден, но он не содержится в данном множестве")
@@ -50,32 +50,32 @@ func TestHas_2(t *testing.T) {
 }
 
 func TestClear(t *testing.T) {
-	s := Create()
-	Add(s, 5)
-	Add(s, 7)
-	Clear(s)
+	s := ftCreate()
+	ftAdd(s, 5)
+	ftAdd(s, 7)
+	ftClear(s)
 
-	if Lem(s) != 0 {
+	if ftLem(s) != 0 {
 		t.Errorf("Множество не очистилось")
 	}
 }
 
 func TestDelete_1(t *testing.T) {
-	s := Create()
-	Add(s, 5)
-	Add(s, 7)
-	Delete(s, 5)
+	s := ftCreate()
+	ftAdd(s, 5)
+	ftAdd(s, 7)
+	ftDelete(s, 5)
 
-	if Has(s, 5) == true {
+	if ftHas(s, 5) == true {
 		t.Errorf("Элемент не удалён")
 	}
 }
 
 func TestDelete_2(t *testing.T) {
-	s := Create()
-	Add(s, 5)
-	Add(s, 7)
-	got := Delete(s, 8)
+	s := ftCreate()
+	ftAdd(s, 5)
+	ftAdd(s, 7)
+	got := ftDelete(s, 8)
 
 	if got == true {
 		t.Errorf("Элемент не включался в множество, но был удалён")
@@ -83,11 +83,11 @@ func TestDelete_2(t *testing.T) {
 }
 
 func TestLem(t *testing.T) {
-	s := Create()
-	Add(s, 5)
-	Add(s, 7)
-	Add(s, 8)
-	got := Lem(s)
+	s := ftCreate()
+	ftAdd(s, 5)
+	ftAdd(s, 7)
+	ftAdd(s, 8)
+	got := ftLem(s)
 
 	if got != 3 {
 		t.Errorf("Количество элементов посчитано неверно")

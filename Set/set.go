@@ -6,13 +6,15 @@ type Set struct {
 	values map[int]bool
 }
 
-func Create() *Set {
+//Создание пустого множества
+func ftCreate() *Set {
 	return &Set{
 		values: map[int]bool{},
 	}
 }
 
-func Add(s *Set, value int) bool {
+//Добавление элемента в множество
+func ftAdd(s *Set, value int) bool {
 	if s.values == nil {
 		fmt.Println("Сначала используйте метод Create")
 		return false
@@ -26,14 +28,15 @@ func Add(s *Set, value int) bool {
 	return true
 }
 
-func Print(s *Set) {
+//Вывод всех элементов множества
+func ftPrint(s *Set) {
 	if s.values == nil || len(s.values) == 0 {
 		fmt.Println("Множество пустое")
 		return
 	}
 	i := 0
 	fmt.Print("[")
-	for key, _ := range s.values {
+	for key := range s.values {
 		i++
 		fmt.Print(key)
 		if i < len(s.values) {
@@ -44,7 +47,8 @@ func Print(s *Set) {
 	return
 }
 
-func Has(s *Set, value int) bool {
+//Проверка на наличие в множестве искомого элемента
+func ftHas(s *Set, value int) bool {
 	if s.values == nil {
 		fmt.Println("Сначала используйте метод Create")
 		return false
@@ -58,23 +62,25 @@ func Has(s *Set, value int) bool {
 	}
 }
 
-func Clear(s *Set) {
+//Очищение множества от всех элементов
+func ftClear(s *Set) {
 	if s.values == nil || len(s.values) == 0 {
 		fmt.Println("Множество пустое")
 		return
 	}
-	for key, _ := range s.values {
+	for key := range s.values {
 		delete(s.values, key)
 	}
 	fmt.Println("Множество очищено")
 }
 
-func Delete(s *Set, value int) bool {
+//Удаление из множества занного элемента
+func ftDelete(s *Set, value int) bool {
 	if s.values == nil || len(s.values) == 0 {
 		fmt.Println("Множество пустое")
 		return false
 	}
-	for key, _ := range s.values {
+	for key := range s.values {
 		if key == value {
 			delete(s.values, key)
 			fmt.Println("Элемент", value, "удалён")
@@ -87,13 +93,10 @@ func Delete(s *Set, value int) bool {
 	return false
 }
 
-func Lem(s *Set) int {
+//Подсчёт количества элементов в множестве
+func ftLem(s *Set) int {
 	if s.values == nil || len(s.values) == 0 {
 		return 0
 	}
-	i := 0
-	for _, _ = range s.values {
-		i++
-	}
-	return i
+	return len(s.values)
 }
